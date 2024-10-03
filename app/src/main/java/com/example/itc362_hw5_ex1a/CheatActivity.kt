@@ -1,13 +1,14 @@
 package com.example.itc362_hw5_ex1a
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import com.example.itc362_hw5_ex1a.databinding.ActivityCheatBinding
 
 private const val EXTRA_ANSWER_IS_TRUE = "com.example.itc362_hw5_ex1a.answer_is_true"
+const val EXTRA_ANSWER_SHOWN = "com.example.itc362_hw5_ex1a.answer_shown"
 
 class CheatActivity : AppCompatActivity() {
 
@@ -27,10 +28,18 @@ class CheatActivity : AppCompatActivity() {
                 else -> R.string.false_button
             }
             binding.answerTextView.setText(answerText)
-            //setAnswerShownResult(true)
+            setAnswerShownResult(true)
         }
     }
 
+    private fun setAnswerShownResult(isAnswerShown:Boolean) {
+        val data = Intent().apply {
+
+            putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
+        }
+        setResult(Activity.RESULT_OK, data)
+
+    }
 
     companion object {
         fun newIntent(packageContext: Context, answerIsTrue: Boolean): Intent {
