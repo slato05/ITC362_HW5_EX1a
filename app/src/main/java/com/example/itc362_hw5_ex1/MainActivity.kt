@@ -1,5 +1,6 @@
 package com.example.itc362_hw5_ex1a
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -37,6 +38,15 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "binding.nextButton.setOnClickListener")
             quizViewModel.moveToNext() //use moveToNext from QuizViewModel class to traverse questions
             updateQuestion()
+        }
+
+        binding.cheatButton.setOnClickListener {
+            // Start CheatActivity
+            val intent = Intent(this, CheatActivity::class.java)
+            //val answerIsTrue = quizViewModel.currentQuestionAnswer
+            //val intent = CheatActivity.newIntent(this@MainActivity, answerIsTrue)
+            startActivity(intent)
+            //cheatLauncher.launch(intent)
         }
         updateQuestion()
     }
